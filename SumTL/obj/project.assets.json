@@ -18,6 +18,22 @@
           }
         }
       },
+      "AutoMapper.Extensions.ExpressionMapping/7.0.0": {
+        "type": "package",
+        "dependencies": {
+          "AutoMapper": "[13.0.0, 14.0.0)"
+        },
+        "compile": {
+          "lib/net6.0/AutoMapper.Extensions.ExpressionMapping.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/AutoMapper.Extensions.ExpressionMapping.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Azure.Core/1.35.0": {
         "type": "package",
         "dependencies": {
@@ -1524,6 +1540,7 @@
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
           "AutoMapper": "13.0.1",
+          "AutoMapper.Extensions.ExpressionMapping": "7.0.0",
           "SumTL.DAL": "1.0.0"
         },
         "compile": {
@@ -1563,6 +1580,20 @@
         "icon.png",
         "lib/net6.0/AutoMapper.dll",
         "lib/net6.0/AutoMapper.xml"
+      ]
+    },
+    "AutoMapper.Extensions.ExpressionMapping/7.0.0": {
+      "sha512": "78Aq0Wh+34ET7qHAzwzQ72ECNeddvEVUpahAHYyMPuLy1j/TLXliVdjyy+ml2HPcleLnehSsddJCtUy8IB20NQ==",
+      "type": "package",
+      "path": "automapper.extensions.expressionmapping/7.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "automapper.extensions.expressionmapping.7.0.0.nupkg.sha512",
+        "automapper.extensions.expressionmapping.nuspec",
+        "icon.png",
+        "lib/net6.0/AutoMapper.Extensions.ExpressionMapping.dll",
+        "lib/net6.0/AutoMapper.Extensions.ExpressionMapping.xml"
       ]
     },
     "Azure.Core/1.35.0": {

@@ -29,7 +29,7 @@ namespace SumTL.Controllers
 
         public IActionResult Index()
         {
-            ItemCategoryDTO data = itemService.Get(it => it.Id == 3);
+            ItemDTO data = itemService.Get(it => it.Id == 3);
             var i = 0;
             return View();
         }

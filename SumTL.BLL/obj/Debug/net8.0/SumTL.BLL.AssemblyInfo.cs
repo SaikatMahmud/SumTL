@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SumTL.BLL")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dc7e38d5f5972e80ed7c483200ba673b966ba52f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8f629f57db3f08151b07fdd4a379f82d662c64af")]
 [assembly: System.Reflection.AssemblyProductAttribute("SumTL.BLL")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SumTL.BLL")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

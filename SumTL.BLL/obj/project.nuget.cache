@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "lExaq9wrXsRmKlDtdSL0bFuoHre356Xp0nhCWtyCdtxsRsd2FBc9Cz+LyQQuKTiMRSplpnURGYO1qVbxM6x+WQ==",
+  "dgSpecHash": "mfhetG7rlWhMRm7rxI51xq1LUspWILhZpra/K+lvFsKcmzr8Sg7YodK8zUhQ++iDp83nq565ZZf3QE+NPaZhRA==",
   "success": true,
   "projectFilePath": "D:\\A I U B\\Adv .NET Git\\Self_Projects\\SumTL\\SumTL.BLL\\SumTL.BLL.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\USER\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
+    "C:\\Users\\USER\\.nuget\\packages\\automapper.extensions.expressionmapping\\7.0.0\\automapper.extensions.expressionmapping.7.0.0.nupkg.sha512",
     "C:\\Users\\USER\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\USER\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",
     "C:\\Users\\USER\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
