@@ -22,7 +22,7 @@ namespace SumTL.DAL.Repos
         public bool Create(T obj)
         {
             dbSet.Add(obj);
-            if (_db.SaveChanges() > 1) return true;
+            if (_db.SaveChanges() > 0) return true;
             return false;
         }
 

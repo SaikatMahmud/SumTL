@@ -55,14 +55,15 @@ namespace SumTL.BLL.Services
         //}
 
 
-        public List<ItemDTO> Get()
+        public List<ItemDTO> Get(string? properties = null)
         {
-            var data = DataAccess.Item.Get();
+            var data = DataAccess.Item.Get(properties);
             if (data != null)
             {
                 var cfg = new MapperConfiguration(c =>
                 {
                     c.CreateMap<Item, ItemDTO>();
+                    c.CreateMap<Category, CategoryDTO>();
                 });
                 var mapper = new Mapper(cfg);
                 return mapper.Map<List<ItemDTO>>(data);
@@ -70,7 +71,7 @@ namespace SumTL.BLL.Services
             }
             return null;
         }
-        public ItemDTO Get(Expression<Func<ItemDTO, bool>> filter)
+        public ItemDTO Get(Expression<Func<ItemDTO, bool>> filter, string? properties = null)
         {
             var cfg = new MapperConfiguration(c =>
             {
@@ -80,7 +81,7 @@ namespace SumTL.BLL.Services
             var mapper = new Mapper(cfg);
             var itemFilter = mapper.MapExpression<Expression<Func<Item, bool>>>(filter);
 
-            var data = DataAccess.Item.Get(itemFilter);
+            var data = DataAccess.Item.Get(itemFilter, properties);
             if (data != null)
             {
                 return mapper.Map<ItemDTO>(data);

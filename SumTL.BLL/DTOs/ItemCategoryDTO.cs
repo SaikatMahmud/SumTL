@@ -8,6 +8,6 @@ namespace SumTL.BLL.DTOs
 {
     public class ItemCategoryDTO : ItemDTO
     {
-        public CategoryDTO Category { get; set; }
+        //public CategoryDTO Category { get; set; }
     }
 }

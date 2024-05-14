@@ -13,6 +13,6 @@ namespace SumTL.BLL.DTOs
         public string ItemUnit { get; set; }
         public int Quantity { get; set; }
         public int CategoryId { get; set; }
-        // public CategoryDTO Category { get; set; }
+        public CategoryDTO Category { get; set; }
     }
 }
