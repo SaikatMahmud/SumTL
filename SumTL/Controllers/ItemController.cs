@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using SumTL.BLL.DTOs;
 using SumTL.BLL.ServiceAccess;
 using SumTL.BLL.Services;
@@ -7,11 +8,11 @@ namespace SumTL.Controllers
 {
     public class ItemController : Controller
     {
-        //private CategoryService categoryService;
+        private CategoryService categoryService;
         private ItemService itemService;
         public ItemController(IBusinessService serviceAccess)
         {
-            //categoryService = serviceAccess.CategoryService;
+            categoryService = serviceAccess.CategoryService;
             itemService = serviceAccess.ItemService;
         }
         public IActionResult GetAll()
@@ -28,14 +29,26 @@ namespace SumTL.Controllers
         public IActionResult Edit(int id)
         {
             var data = itemService.Get(c => c.Id == id);
+            IEnumerable<SelectListItem> catList = categoryService.Get().Select(c => new SelectListItem
+            {
+                Text = c.CategoryName,
+                Value = c.Id.ToString(),
+            });
+            ViewBag.catList = catList;
             return View(data);
         }
         [HttpPost]
         public IActionResult Edit(ItemDTO ct)
         {
+            IEnumerable<SelectListItem> catList = categoryService.Get().Select(c => new SelectListItem
+            {
+                Text = c.CategoryName,
+                Value = c.Id.ToString(),
+            });
+            ViewBag.catList = catList;
             if (!ModelState.IsValid)
             {
-                return View();
+                return View(ct);
             }
             var result = itemService.Update(ct);
             TempData["msg"] = result ? "Updated successfully!" : "Error! Not Updated";
@@ -44,6 +57,12 @@ namespace SumTL.Controllers
         [HttpGet]
         public IActionResult Create()
         {
+            IEnumerable<SelectListItem> catList = categoryService.Get().Select(c => new SelectListItem
+            {
+                Text = c.CategoryName,
+                Value = c.Id.ToString(),
+            });
+            ViewBag.catList = catList;
             return View();
         }
         [HttpPost]
@@ -51,7 +70,13 @@ namespace SumTL.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View();
+                IEnumerable<SelectListItem> catList = categoryService.Get().Select(c => new SelectListItem
+                {
+                    Text = c.CategoryName,
+                    Value = c.Id.ToString(),
+                });
+                ViewBag.catList = catList;
+                return View(ct);
             }
             var result = itemService.Create(ct);
             TempData["msg"] = result ? "Added successfully!" : "Error! Could not added";

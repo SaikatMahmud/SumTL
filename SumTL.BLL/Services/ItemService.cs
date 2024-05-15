@@ -104,6 +104,9 @@ namespace SumTL.BLL.Services
             if (existingData != null)
             {
                 existingData.ItemName = obj.ItemName;
+                existingData.ItemUnit = obj.ItemUnit;
+                existingData.Quantity = obj.Quantity;
+                existingData.CategoryId = obj.CategoryId;
             }
             return DataAccess.Item.Update(existingData);
         }
