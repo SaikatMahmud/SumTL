@@ -36,7 +36,8 @@ namespace SumTL.Controllers
         //    var i = 0;
         //    return View();
         //}
-        //#region MVC
+
+        #region Razor views
         //public IActionResult GetAll()
         //{
         //    var data = categoryService.Get();
@@ -87,9 +88,9 @@ namespace SumTL.Controllers
         //    TempData["msg"] = result ? "Deleted successfully!" : "Error! Could not deleted";
         //    return !result ? View("ErrorView") : RedirectToAction("GetAll");
         //}
-        //#endregion
+        #endregion
 
-        #region API
+        #region API / Ajax
         public IActionResult Index()
         {
             return View();
@@ -110,9 +111,33 @@ namespace SumTL.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return Json( new { msg = ModelState} );
+                return Json(new { msg = "One or more field validation error!" });
             }
             var result = categoryService.Update(ct);
+            return Ok();
+        }
+        [HttpDelete]
+        public IActionResult Delete(int id)
+        {
+            var result = categoryService.Delete(id);
+            if (!result) return Json(new { msg = "Delete failed. Category not found!" });
+            return Ok();
+        }
+
+
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Create(CategoryDTO ct)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Json(new { msg = "One or more field validation error!" });
+            }
+            var result = categoryService.Create(ct);
             return Ok();
         }
 

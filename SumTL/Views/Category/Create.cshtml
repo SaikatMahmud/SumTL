@@ -1,57 +1,19 @@
-﻿@* @model SumTL.BLL.DTOs.CategoryDTO
+﻿@model CategoryDTO
 
-@{
-    ViewData["Title"] = "Create";
-}
-
-<h1>Create</h1>
-
-<h4>CategoryDTO</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="CategoryName" class="control-label"></label>
-                <input asp-for="CategoryName" class="form-control" />
-                <span asp-validation-for="CategoryName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-} *@
-
-@model CategoryDTO
-
-<form method="post">
+<form id="CategoryForm">
     <div class="border p-3 mt-4">
         <div class="row pb-2">
             <h2> Create Category</h2>
             <hr />
+
             <div class="mb-3">
                 <label>Category Name</label>
-                <input asp-for="CategoryName" class="form-control" />
-                <span asp-validation-for="CategoryName" class="text-danger"></span>
+                <input id="CategoryName" asp-for="CategoryName" class="form-control" />
             </div>
         </div>
     </div>
-    <button type="submit" class="btn btn-success">Add</button>
-    <a asp-controller="Category" asp-action="GetAll" class="btn btn-info">Back to List</a>
+    <input type="button" value="Add" onclick="AddFormData()" class="btn btn-success"></input>
+    <a asp-controller="Category" asp-action="Index" class="btn btn-info">Back to List</a>
 </form>
 
-@section Scripts {
-    
-        <partial name="_ValidationScriptsPartial" />
-    
-}
+<script src="~/js/Category.js"></script>

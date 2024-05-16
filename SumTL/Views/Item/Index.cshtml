@@ -2,10 +2,10 @@
 <div>
     <div class="row pt-4 pb-3">
         <div class="col-6">
-            <h2>Category List</h2>
+            <h2>Item List</h2>
         </div>
         <div class="col-6 text-end">
-            <a asp-controller="Category" asp-action="Create" class="btn btn-success"><i class="bi bi-plus-circle"></i> Add New</a>
+            <a asp-controller="Item" asp-action="Create" class="btn btn-success"><i class="bi bi-plus-circle"></i> Add New</a>
         </div>
     </div>
 </div>
@@ -13,17 +13,24 @@
 
 
 
-<script type="text/x-handlebars-template" id="category_list">
+<script type="text/x-handlebars-template" id="item_list">
         <table class="table table-hover">
             <tr>
-                <th>Category Id</th>
-                <th>Name</th>
+                <th>Item Id</th>
+                <th>Item Name</th>
+                <th>Unit</th>
+                <th>Quantity</th>
+                <th>Category</th>
                 <th>Action</th>
             </tr>
             {{#each rows}}
             <tr>
                 <td>{{id}}</td>
-                <td>{{categoryName}}</td>
+                <td>{{id}}</td>
+                <td>{{itemName}}</td>
+                <td>{{itemUnit}}</td>
+                <td>{{quantity}}</td>
+                <td>{{category.categoryName}}</td>
                   <td>
                       <button type="button" onclick="Edit({{id}})" class="btn btn-warning">Edit</button>
 
@@ -34,4 +41,4 @@
         </table>
 </script>
 
-<script src="~/js/Category.js"></script>
+<script src="~/js/Item.js"></script>

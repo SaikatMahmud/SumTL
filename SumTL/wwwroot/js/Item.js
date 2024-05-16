@@ -3,7 +3,7 @@
 });
 
 function renderList(obj){ //handlebar
-    const template = $("#category_list").html();
+    const template = $("#item_list").html();
     const compiledTemplate = Handlebars.compile(template);
     debugger;
     const html = compiledTemplate({ rows: obj });
@@ -13,14 +13,14 @@ function renderList(obj){ //handlebar
 function LoadList() {
     console.log("executed");
     $.ajax({
-        url: '/Category/GetAll',
+        url: '/Item/GetAll',
         type: 'GET',
         success: function (response) {
             debugger;
             if (response.data && response.data.length > 0) {
                 renderList(response.data);
             } else {
-                $(".render_data").html("Category List is empty!");
+                $(".render_data").html("Item List is empty!");
             }
         },
         error: function (error) {
@@ -32,19 +32,22 @@ function LoadList() {
 
 function Edit(id) {
     console.log("executed");
-    window.location.href = "/Category/Edit/" + id;
+    window.location.href = "/Item/Edit/" + id;
 }
 
 function SaveFormData() {
     console.log("form data called");
-    var formData = new FormData(document.getElementById("CategoryForm"));
+    var formData = new FormData(document.getElementById("ItemForm"));
     formData.append("Id", $("#Id").val())
     console.log(...formData);
 
     const DoValidation = () => {
         debugger;
         if (
-            !formData.get("CategoryName")
+            !formData.get("ItemName") ||
+            !formData.get("ItemUnit") ||
+            !formData.get("Quantity") ||
+            !formData.get("CategoryId")
         ) {
             alert('Please input required field(s).');
             return;
@@ -55,7 +58,7 @@ function SaveFormData() {
     const Execute = (formData) => {
         debugger;
         $.ajax({
-            url: '/Category/Edit/',
+            url: '/Item/Edit/',
             type: 'PUT',
             data: formData,
             processData: false,
@@ -67,7 +70,7 @@ function SaveFormData() {
             return;
                 }
                 alert("Update success!");
-                window.location.href = "/Category/Index";
+                window.location.href = "/Item/Index";
             },
             error: function (error) {
                 debugger;
@@ -80,13 +83,16 @@ function SaveFormData() {
 
 function AddFormData() {
     console.log("form data called");
-    var formData = new FormData(document.getElementById("CategoryForm"));
+    var formData = new FormData(document.getElementById("ItemForm"));
     console.log(...formData);
 
     const DoValidation = () => {
         debugger;
         if (
-            !formData.get("CategoryName")
+            !formData.get("ItemName") ||
+            !formData.get("ItemUnit") ||
+            !formData.get("Quantity") ||
+            !formData.get("CategoryId")
         ) {
             alert('Please input required field(s).');
             return;
@@ -97,7 +103,7 @@ function AddFormData() {
     const Execute = (formData) => {
         debugger;
         $.ajax({
-            url: '/Category/Create/',
+            url: '/Item/Create/',
             type: 'POST',
             data: formData,
             processData: false,
@@ -108,8 +114,8 @@ function AddFormData() {
                     alert(response.msg);
                     return;
                 }
-                alert("Category created!");
-                window.location.href = "/Category/Index";
+                alert("Item created!");
+                window.location.href = "/Item/Index";
             },
             error: function (error) {
                 debugger;
@@ -122,7 +128,7 @@ function AddFormData() {
 
 function Delete(id) {
     $.ajax({
-        url: '/Category/Delete/'+id,
+        url: '/Item/Delete/'+id,
         type: 'DELETE',
         success: function (response) {
             debugger;
@@ -130,8 +136,8 @@ function Delete(id) {
                 alert(response.msg);
                 return;
             }
-            alert("Category deleted!");
-            window.location.href = "/Category/Index";
+            alert("Item deleted!");
+            window.location.href = "/Item/Index";
         },
         error: function (error) {
             debugger;
