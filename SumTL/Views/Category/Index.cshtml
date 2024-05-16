@@ -14,10 +14,14 @@
             <tr>
                 <td>{{id}}</td>
                 <td>{{categoryName}}</td>
-    @* <td><input type="checkbox" value="{{id}}" name="IdToDelete[]" /> Delete</td> *@
+                  <td>
+                      <button type="button" onclick="Edit({{id}})" class="btn btn-warning">Edit</button>
+
+                      <button type="button" onclick="window.location.href='catego/'+{{id}}" class="btn btn-danger">Edit</button>
+                   </td>
             </tr>
             {{/each}}
         </table>
 </script>
 
-<script src="~/js/getCategoryList.js"></script>
+<script src="~/js/Category.js"></script>

@@ -41,29 +41,22 @@
 
 @model CategoryDTO
 
-<form method="post">
+<form id="ItemForm">
     <div class="border p-3 mt-4">
         <div class="row pb-2">
             <h2> Edit Category</h2>
             <hr />
             
-            <div class="mb-3">
-                <input asp-for="Id" hidden/>
+            <div class="mb-3"> 
                 <label>Category ID</label>
-                <input asp-for="Id" disabled class="form-control" />
-               
+                <input id="Id" asp-for="Id" disabled class="form-control" />
                 <label>Category Name</label>
-                <input asp-for="CategoryName" class="form-control" />
-                <span asp-validation-for="CategoryName" class="text-danger"></span>
+                <input id="CategoryName" asp-for="CategoryName" class="form-control" />
             </div>
         </div>
     </div>
-    <button type="submit" class="btn btn-success">Save</button>
+    <input type="button" value="Save" onclick="SaveFormData()" class="btn btn-success"></input>
     <a asp-controller="Category" asp-action="GetAll" class="btn btn-info">Back to List</a>
 </form>
 
-@section Scripts {
-    @{
-        <partial name="_ValidationScriptsPartial" />
-    }
-}
+<script src="~/js/Category.js"></script>

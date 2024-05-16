@@ -3,6 +3,7 @@ using Microsoft.Identity.Client;
 using SumTL.BLL.DTOs;
 using SumTL.BLL.ServiceAccess;
 using SumTL.BLL.Services;
+using System.Net;
 using System.Text.Json;
 
 namespace SumTL.Controllers
@@ -93,12 +94,27 @@ namespace SumTL.Controllers
         {
             return View();
         }
-        public JsonResult GetAll()
+        public IActionResult GetAll()
         {
             var data = categoryService.Get();
-            return Json(new { result = data });
+            return Json(new { data = data });
         }
-        
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            var data = categoryService.Get(c => c.Id == id);
+            return View(data);
+        }
+        [HttpPut]
+        public IActionResult Edit(CategoryDTO ct)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Json( new { msg = ModelState} );
+            }
+            var result = categoryService.Update(ct);
+            return Ok();
+        }
 
         #endregion
     }
