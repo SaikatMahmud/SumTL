@@ -21,9 +21,27 @@ namespace SumTL.DAL.Repos
             signInManager = _signInManager;
         }
 
-        public bool ChangePass(AppUser obj, out string? errorMsg)
+        public async Task<(bool success, string? error)> Register(AppUser obj)
         {
-            throw new NotImplementedException();
+            try
+            {
+               // var checkUserName = await
+                var createResult = await userManager.CreateAsync(obj, obj.Password);
+                if (createResult.Succeeded)
+                {
+                    var roleResult = await userManager.AddToRoleAsync(obj, "Admin");
+                    if (roleResult.Succeeded) return (true, null);
+                    else {
+                        _ = userManager.DeleteAsync(obj);
+                        return (false, roleResult.Errors.FirstOrDefault().Description.ToString());
+                    }          
+                }
+                else return (false, createResult.Errors.FirstOrDefault().Description.ToString());
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         public bool Login(AppUser obj, out string? errorMsg)
@@ -35,34 +53,40 @@ namespace SumTL.DAL.Repos
         {
             throw new NotImplementedException();
         }
-
-        public bool Register(AppUser obj, out string? errorMsg)
+        public bool ChangePass(AppUser obj, out string? errorMsg)
         {
-            errorMsg = "";
-            try
-            {
-                var createResult =  userManager.CreateAsync(obj, obj.Password);
-                if (createResult.IsCompletedSuccessfully)
-                {
-                    var roleResult = userManager.AddToRoleAsync(obj, "Admin");
-                    if (roleResult.IsCompletedSuccessfully) return true;
-                    else
-                    {
-                        errorMsg = roleResult.Result.ToString();
-                        return false;
-                    }
-                }
-                else
-                {
-                    errorMsg = createResult.Result.ToString();
-                    return false;
-                }
-
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            throw new NotImplementedException();
         }
+
+
+
+        //public bool Register(AppUser obj, out string? errorMsg)
+        //{
+        //    errorMsg = "";
+        //    try
+        //    {
+        //        var createResult =  userManager.CreateAsync(obj, obj.Password);
+        //        if (createResult.IsCompletedSuccessfully)
+        //        {
+        //            var roleResult = userManager.AddToRoleAsync(obj, "Admin");
+        //            if (roleResult.IsCompletedSuccessfully) return true;
+        //            else
+        //            {
+        //                errorMsg = roleResult.Result.ToString();
+        //                return false;
+        //            }
+        //        }
+        //        else
+        //        {
+        //            errorMsg = createResult.Result.ToString();
+        //            return false;
+        //        }
+
+        //    }
+        //    catch (Exception)
+        //    {
+        //        throw;
+        //    }
+        //}
     }
 }

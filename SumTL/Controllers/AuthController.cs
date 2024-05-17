@@ -20,8 +20,21 @@ namespace SumTL.Controllers
         [HttpPost]
         public IActionResult Register(AppUserDTO obj)
         {
-            string errorMsg;
-            var result = authService.Register(obj, out errorMsg);
+            if (ModelState.IsValid)
+            {
+                string errorMsg;
+                var result = authService.Register(obj, out errorMsg);
+                if (errorMsg != null)
+                {
+                    ViewBag.Error = errorMsg;
+                }
+                return View();
+            }
+            return NotFound();
+        }
+        [HttpGet]
+        public IActionResult Login()
+        {
             return View();
         }
 

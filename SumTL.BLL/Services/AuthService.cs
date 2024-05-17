@@ -20,13 +20,20 @@ namespace SumTL.BLL.Services
         }
         public bool Register(AppUserDTO obj, out string? errorMsg)
         {
+            errorMsg = null;
             var cfg = new MapperConfiguration(c =>
             {
                 c.CreateMap<AppUserDTO, AppUser>();
             });
             var mapper = new Mapper(cfg);
             var AppUser = mapper.Map<AppUser>(obj);
-            return DataAccess.AppUser.Register(AppUser, out errorMsg);
+            var result = DataAccess.AppUser.Register(AppUser);
+            if (!result.Result.success)
+            {
+                errorMsg = result.Result.error;
+                return false;
+            }
+            return true;
         }
     }
 }

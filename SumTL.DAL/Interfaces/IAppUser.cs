@@ -9,7 +9,7 @@ namespace SumTL.DAL.Interfaces
 {
     public interface IAppUser<T>
     {
-        bool Register(T obj, out string? errorMsg);
+        Task<(bool success, string? error)> Register(T obj);
         bool Login(T obj, out string? errorMsg);
         bool Logout(T obj, out string? errorMsg);
         bool ChangePass(T obj, out string? errorMsg);

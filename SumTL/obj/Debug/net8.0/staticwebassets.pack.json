@@ -13,6 +13,14 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "D:\\A I U B\\Adv .NET Git\\Self_Projects\\SumTL\\SumTL\\wwwroot\\js\\Category.js",
+      "PackagePath": "staticwebassets\\js\\Category.js"
+    },
+    {
+      "Id": "D:\\A I U B\\Adv .NET Git\\Self_Projects\\SumTL\\SumTL\\wwwroot\\js\\Item.js",
+      "PackagePath": "staticwebassets\\js\\Item.js"
+    },
+    {
       "Id": "D:\\A I U B\\Adv .NET Git\\Self_Projects\\SumTL\\SumTL\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

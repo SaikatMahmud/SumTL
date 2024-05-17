@@ -26,6 +26,26 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = D:\A I U B\Adv .NET Git\Self_Projects\SumTL\SumTL
 build_property._RazorSourceGeneratorDebug = 
 
+[D:/A I U B/Adv .NET Git/Self_Projects/SumTL/SumTL/Views/Auth/Register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aFxSZWdpc3Rlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/A I U B/Adv .NET Git/Self_Projects/SumTL/SumTL/Views/Category-Razor/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnktUmF6b3JcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/A I U B/Adv .NET Git/Self_Projects/SumTL/SumTL/Views/Category-Razor/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnktUmF6b3JcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/A I U B/Adv .NET Git/Self_Projects/SumTL/SumTL/Views/Category-Razor/Get.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnktUmF6b3JcR2V0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/A I U B/Adv .NET Git/Self_Projects/SumTL/SumTL/Views/Category-Razor/GetAll.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnktUmF6b3JcR2V0QWxsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/A I U B/Adv .NET Git/Self_Projects/SumTL/SumTL/Views/Category/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -34,12 +54,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/A I U B/Adv .NET Git/Self_Projects/SumTL/SumTL/Views/Category/Get.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcR2V0LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/A I U B/Adv .NET Git/Self_Projects/SumTL/SumTL/Views/Category/GetAll.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcR2V0QWxsLmNzaHRtbA==
+[D:/A I U B/Adv .NET Git/Self_Projects/SumTL/SumTL/Views/Category/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/A I U B/Adv .NET Git/Self_Projects/SumTL/SumTL/Views/Home/Index.cshtml]
@@ -50,6 +66,22 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/A I U B/Adv .NET Git/Self_Projects/SumTL/SumTL/Views/Item-Razor/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSXRlbS1SYXpvclxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/A I U B/Adv .NET Git/Self_Projects/SumTL/SumTL/Views/Item-Razor/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSXRlbS1SYXpvclxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/A I U B/Adv .NET Git/Self_Projects/SumTL/SumTL/Views/Item-Razor/Get.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSXRlbS1SYXpvclxHZXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/A I U B/Adv .NET Git/Self_Projects/SumTL/SumTL/Views/Item-Razor/GetAll.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSXRlbS1SYXpvclxHZXRBbGwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/A I U B/Adv .NET Git/Self_Projects/SumTL/SumTL/Views/Item/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSXRlbVxDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -58,12 +90,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSXRlbVxFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/A I U B/Adv .NET Git/Self_Projects/SumTL/SumTL/Views/Item/Get.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSXRlbVxHZXQuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/A I U B/Adv .NET Git/Self_Projects/SumTL/SumTL/Views/Item/GetAll.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSXRlbVxHZXRBbGwuY3NodG1s
+[D:/A I U B/Adv .NET Git/Self_Projects/SumTL/SumTL/Views/Item/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSXRlbVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/A I U B/Adv .NET Git/Self_Projects/SumTL/SumTL/Views/Shared/Error.cshtml]

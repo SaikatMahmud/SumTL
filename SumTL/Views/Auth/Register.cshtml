@@ -1,4 +1,10 @@
 ﻿@model AppUserDTO
+@if(ViewBag.Error != null)
+{
+    <div class="alert alert-danger" role="alert">
+        @ViewBag.Error
+    </div>
+}
 
 <form method="post">
     <div class="border p-3 mt-4">
