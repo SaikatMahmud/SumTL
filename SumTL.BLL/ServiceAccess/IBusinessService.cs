@@ -13,5 +13,6 @@ namespace SumTL.BLL.ServiceAccess
         // public IUnitOfWork _unitOfWork { get; set; }
         public CategoryService CategoryService { get; set; }
         public ItemService ItemService { get; set; }
+        public AuthService AuthService { get; set; }
     }
 }

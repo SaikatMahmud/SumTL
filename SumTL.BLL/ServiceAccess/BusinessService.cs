@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.ChangeTracking;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using SumTL.BLL.Services;
 using SumTL.DAL;
 using SumTL.DAL.Models;
@@ -16,12 +17,19 @@ namespace SumTL.BLL.ServiceAccess
         // public IUnitOfWork _unitOfWork { get; set; }
         public CategoryService CategoryService { get; set; }
         public ItemService ItemService { get; set; }
+        public AuthService AuthService { get; set; }
+
 
         public BusinessService(IUnitOfWork unitOfWork)
         {
             //_unitOfWork = unitOfWork;
             CategoryService = new CategoryService(unitOfWork);
             ItemService = new ItemService(unitOfWork);
+            AuthService =  new AuthService(unitOfWork);
         }
+        //public BusinessService(IUnitOfWork unitOfWork, UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
+        //{
+        //    AuthService = new AuthService(unitOfWork, userManager, signInManager);
+        //}
     }
 }
