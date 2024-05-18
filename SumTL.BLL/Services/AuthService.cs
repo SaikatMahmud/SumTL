@@ -35,5 +35,27 @@ namespace SumTL.BLL.Services
             }
             return true;
         }
+        public bool Login(AppUserDTO obj, out string? errorMsg)
+        {
+            errorMsg = null;
+            var cfg = new MapperConfiguration(c =>
+            {
+                c.CreateMap<AppUserDTO, AppUser>();
+            });
+            var mapper = new Mapper(cfg);
+            var AppUser = mapper.Map<AppUser>(obj);
+            var result = DataAccess.AppUser.Login(AppUser);
+            if (!result.Result.success)
+            {
+                errorMsg = result.Result.error;
+                return false;
+            }
+            return true;
+        }
+        public bool Logout()
+        {
+            DataAccess.AppUser.Logout();
+            return true;
+        }
     }
 }

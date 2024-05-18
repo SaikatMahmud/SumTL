@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Identity.Client;
 using SumTL.BLL.DTOs;
 using SumTL.BLL.ServiceAccess;
@@ -8,6 +9,7 @@ using System.Text.Json;
 
 namespace SumTL.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class CategoryController : Controller
     {
         private CategoryService categoryService;

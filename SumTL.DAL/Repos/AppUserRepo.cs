@@ -20,21 +20,21 @@ namespace SumTL.DAL.Repos
             userManager = _userManager;
             signInManager = _signInManager;
         }
-
         public async Task<(bool success, string? error)> Register(AppUser obj)
         {
             try
             {
-               // var checkUserName = await
-                var createResult = await userManager.CreateAsync(obj, obj.Password);
+                // var checkUserName = await
+                var createResult = await userManager.CreateAsync(obj, obj.PasswordHash);
                 if (createResult.Succeeded)
                 {
-                    var roleResult = await userManager.AddToRoleAsync(obj, "Admin");
+                    var roleResult = await userManager.AddToRoleAsync(obj, "General");
                     if (roleResult.Succeeded) return (true, null);
-                    else {
+                    else
+                    {
                         _ = userManager.DeleteAsync(obj);
                         return (false, roleResult.Errors.FirstOrDefault().Description.ToString());
-                    }          
+                    }
                 }
                 else return (false, createResult.Errors.FirstOrDefault().Description.ToString());
             }
@@ -44,14 +44,17 @@ namespace SumTL.DAL.Repos
             }
         }
 
-        public bool Login(AppUser obj, out string? errorMsg)
+        public async Task<(bool success, string? error)> Login(AppUser obj)
         {
-            throw new NotImplementedException();
+            var result = await signInManager.PasswordSignInAsync(obj.UserName, obj.PasswordHash, false, false);
+            if (result.Succeeded) { return (true, null); };
+            return (false, "Invalid username or password");
         }
 
-        public bool Logout(AppUser obj, out string? errorMsg)
+        public async Task<bool> Logout()
         {
-            throw new NotImplementedException();
+            await signInManager.SignOutAsync();
+            return true;
         }
         public bool ChangePass(AppUser obj, out string? errorMsg)
         {

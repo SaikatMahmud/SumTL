@@ -1,9 +1,9 @@
 ﻿@model AppUserDTO
 
-<form id="RegForm">
+<form id="LoginForm">
     <div class="border p-3 mt-4">
         <div class="row pb-2">
-            <h2>Register as General User</h2>
+            <h2>Login to your account (Admin/General)</h2>
             <hr />
 
             <div class="mb-3">
@@ -14,13 +14,9 @@
                 <label>Password</label>
                 <input type="password" id="PasswordHash" asp-for="PasswordHash" class="form-control" />
             </div>
-            <div class="mb-3">
-                <label>Email</label>
-                <input id="Email" asp-for="Email" class="form-control" />
-            </div>
         </div>
     </div>
-    <input type="button" value="Signup" onclick="AddFormData()" class="btn btn-success"></input>
+    <input type="button" value="Login" onclick="Login()" class="btn btn-success"/>
 </form>
 
 <script src="~/js/Auth.js"></script>

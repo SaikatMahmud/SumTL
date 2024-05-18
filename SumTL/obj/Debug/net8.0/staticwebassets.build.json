@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "UHZuIuERabjQWcxWCof+1vzr5BbDDBxmaDFK0KT+OhA=",
+  "Hash": "6ffw3CSKP+fl1c3lIHymS50BT84ugDpa6OBNhNtZ/qs=",
   "Source": "SumTL",
   "BasePath": "_content/SumTL",
   "Mode": "Default",
@@ -91,6 +91,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "D:\\A I U B\\Adv .NET Git\\Self_Projects\\SumTL\\SumTL\\wwwroot\\js\\Auth.js",
+      "SourceId": "SumTL",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\A I U B\\Adv .NET Git\\Self_Projects\\SumTL\\SumTL\\wwwroot\\",
+      "BasePath": "_content/SumTL",
+      "RelativePath": "js/Auth.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\Auth.js"
     },
     {
       "Identity": "D:\\A I U B\\Adv .NET Git\\Self_Projects\\SumTL\\SumTL\\wwwroot\\js\\Category.js",

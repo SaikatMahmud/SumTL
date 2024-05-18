@@ -15,7 +15,6 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
 
 
-
 builder.Services.AddScoped<IBusinessService, BusinessService>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
