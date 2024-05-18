@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace SumTL.BLL.DTOs
 {
-    public class ItemCategoryDTO : ItemDTO
+    public class ItemImagesDTO : ItemDTO
     {
-        //public CategoryDTO Category { get; set; }
+        public List<ImageDTO> Images { get; set; }
     }
 }

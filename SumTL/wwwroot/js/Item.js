@@ -1,6 +1,6 @@
-﻿$(document).ready(function () {
-    LoadList();
-});
+﻿//$(document).ready(function () {
+//    LoadList();
+//});
 
 function renderList(obj){ //handlebar
     const template = $("#item_list").html();
@@ -10,24 +10,65 @@ function renderList(obj){ //handlebar
     $(".render_data").html(html);
 };
 
-function LoadList() {
+
+function renderTable(obj) { //datatable
+    debugger;
+    $('#tblData').DataTable({
+        data: obj,
+        columns: [
+            { data: 'id' },
+            { data: 'itemName' },
+            { data: 'itemUnit' },
+            { data: 'quantity' },
+            { data: 'category.categoryName' },
+            {
+                data: 'id', render: function (data, type, row, meta) {
+                    return type === 'display' ?
+                        '<button type="button" onclick="Edit(' + data + ')" class="btn btn-warning">Edit</button>' +
+                        '<button type="button" onclick="Delete(' + data + ')" class="btn btn-danger" > Delete</button>' : data;
+                }
+            },
+            //{ defaultContent: '<button type="button" onclick="Edit("+data.id+")" class="btn btn-warning">Edit</button>' }
+            
+        ]
+    });
+};
+
+
+function LoadList() { // for datatable
     console.log("executed");
     $.ajax({
         url: '/Item/GetAll',
         type: 'GET',
         success: function (response) {
             debugger;
-            if (response.data && response.data.length > 0) {
-                renderList(response.data);
-            } else {
-                $(".render_data").html("Item List is empty!");
-            }
+            renderTable(response.data);
         },
         error: function (error) {
             alert("Internal server error!");
         }
     });
 }
+
+
+//function LoadList() { // for handlebar
+//    console.log("executed");
+//    $.ajax({
+//        url: '/Item/GetAll',
+//        type: 'GET',
+//        success: function (response) {
+//            debugger;
+//            if (response.data && response.data.length > 0) {
+//                renderList(response.data);
+//            } else {
+//                $(".render_data").html("Item List is empty!");
+//            }
+//        },
+//        error: function (error) {
+//            alert("Internal server error!");
+//        }
+//    });
+//}
 
 
 function Edit(id) {

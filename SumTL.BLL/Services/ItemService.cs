@@ -71,20 +71,23 @@ namespace SumTL.BLL.Services
             }
             return null;
         }
-        public ItemDTO Get(Expression<Func<ItemDTO, bool>> filter, string? properties = null)
+        public ItemImagesDTO Get(Expression<Func<ItemDTO, bool>> filter, string? properties = null)
         {
             var cfg = new MapperConfiguration(c =>
             {
                 //c.AddExpressionMapping();
-                c.CreateMap<Item, ItemDTO>();
+                c.CreateMap<Item, ItemDTO>(); // only for expression
+                c.CreateMap<Item, ItemImagesDTO>();
+                c.CreateMap<Image, ImageDTO>();
             });
             var mapper = new Mapper(cfg);
             var itemFilter = mapper.MapExpression<Expression<Func<Item, bool>>>(filter);
 
+
             var data = DataAccess.Item.Get(itemFilter, properties);
             if (data != null)
             {
-                return mapper.Map<ItemDTO>(data);
+                return mapper.Map<ItemImagesDTO>(data);
             }
             return null;
         }
@@ -115,5 +118,22 @@ namespace SumTL.BLL.Services
             var data = DataAccess.Item.Get(c => c.Id == Id);
             return DataAccess.Item.Delete(data);
         }
+
+        public bool UploadImage(int Id, string ImageUrl)
+        {
+            var obj = new Image()
+            {
+                ItemId = Id,
+                ImageUrl = ImageUrl
+            };
+            return DataAccess.Image.Create(obj);
+        }
+        public string DeleteImage(int ImageId)
+        {
+            var data = DataAccess.Image.Get(c => c.Id == ImageId);
+            DataAccess.Image.Delete(data);
+            return data.ImageUrl;
+        }
+
     }
 }

@@ -18,6 +18,7 @@ namespace SumTL.DAL.Models
 
         [ForeignKey("CategoryId")]
         public virtual Category Category { get; set; }
+        public virtual ICollection<Image> Images { get; set; }
 
     }
 }

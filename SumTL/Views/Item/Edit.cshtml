@@ -1,38 +1,59 @@
-﻿
-@model ItemDTO
-
-<form id="ItemForm">
-    <div class="border p-3 mt-4">
-        <div class="row pb-2">
-            <h2> Edit Item</h2>
+﻿@model ItemImagesDTO
+<div class="row">
+    <div class="col-9">
+        <form id="ItemForm">
+            <div class="border p-3 mt-4">
+                <div class="row pb-2">
+                    <h2> Edit Item</h2>
+                    <hr />
+                    <div class="mb-3">
+                        <input id="Id" asp-for="Id" hidden />
+                        <label>Item Name</label>
+                        <input id="ItemName" asp-for="ItemName" class="form-control" />
+                        <span asp-validation-for="ItemName" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label>Item Unit</label>
+                        <input id="ItemUnit" asp-for="ItemUnit" class="form-control" />
+                        <span asp-validation-for="ItemUnit" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label>Quantity</label>
+                        <input id="Quantity" asp-for="Quantity" class="form-control" />
+                        <span asp-validation-for="Quantity" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label>Category</label>
+                        <select id="CategoryId" asp-for="CategoryId" asp-items="ViewBag.catList" class="form-select">
+                            <option disabled selected>Select Category</option>
+                        </select>
+                        <span asp-validation-for="CategoryId" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <input type="button" value="Save" onclick="SaveFormData()" class="btn btn-success"></input>
+            <a asp-controller="Item" asp-action="Index" class="btn btn-info">Back to List</a>
             <hr />
-            <div class="mb-3">
-                <input id="Id" asp-for="Id" hidden />
-                <label>Item Name</label>
-                <input id="ItemName" asp-for="ItemName" class="form-control" />
-                <span asp-validation-for="ItemName" class="text-danger"></span>
-            </div>
-            <div class="mb-3">
-                <label>Item Unit</label>
-                <input id="ItemUnit" asp-for="ItemUnit" class="form-control" />
-                <span asp-validation-for="ItemUnit" class="text-danger"></span>
-            </div>
-            <div class="mb-3">
-                <label>Quantity</label>
-                <input id="Quantity" asp-for="Quantity" class="form-control" />
-                <span asp-validation-for="Quantity" class="text-danger"></span>
-            </div>
-            <div class="mb-3">
-                <label>Category</label>
-                <select id="CategoryId" asp-for="CategoryId" asp-items="ViewBag.catList" class="form-select">
-                    <option disabled selected>Select Category</option>
-                </select>
-                <span asp-validation-for="CategoryId" class="text-danger"></span>
-            </div>
-        </div>
+        </form>
+        <form id="ItemImageUpload" enctype="multipart/form-data">
+            <label>Upload an image</label>
+            <input id="Id" asp-for="Id" hidden />
+            <input type="file" id="inputFile" class="form-control" />
+            <input type="button" value="Upload" onclick="UploadImage(@Model.Id)" class="btn btn-success"></input>
+        </form>
     </div>
-    <input type="button" value="Save" onclick="SaveFormData()" class="btn btn-success"></input>
-    <a asp-controller="Item" asp-action="Index" class="btn btn-info">Back to List</a>
-</form>
+    <div class="col-3">
+        <h3>Image(s)</h3>
+        @foreach(var image in Model.Images)
+        {
+            <img src="@image.ImageUrl" width="100%" />
+            <button type="button" onclick="DeleteImage(@image.Id)" class="btn btn-danger">Delete</button>
+        }
+    </div>
+</div>
+
+
 
 <script src="~/js/Item.js"></script>
+<script src="~/js/FilesHandle.js"></script>
+

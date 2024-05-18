@@ -1,4 +1,4 @@
-﻿
+﻿@* 
 <div>
     <div class="row pt-4 pb-3">
         <div class="col-6">
@@ -34,4 +34,32 @@
         </table>
 </script>
 
+<script src="~/js/Category.js"></script> *@
+
+
+
+<body onload="LoadList()">
+    <div>
+        <div class="row pt-4 pb-3">
+            <div class="col-6">
+                <h2>Category List</h2>
+            </div>
+            <div class="col-6 text-end">
+                <a asp-controller="Category" asp-action="Create" class="btn btn-success"><i class="bi bi-plus-circle"></i> Add New</a>
+            </div>
+        </div>
+    </div>
+    <div>
+        <table id="tblData" class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Category Id</th>
+                    <th>Category Name</th>
+                    <th></th>
+                </tr>
+            </thead>
+
+        </table>
+    </div>
+</body>
 <script src="~/js/Category.js"></script>

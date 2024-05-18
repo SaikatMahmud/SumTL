@@ -1,33 +1,67 @@
-﻿$(document).ready(function () {
-    LoadList();
-});
+﻿
+//function renderList(obj){ //handlebar
+//    const template = $("#category_list").html();
+//    const compiledTemplate = Handlebars.compile(template);
+//    debugger;
+//    const html = compiledTemplate({ rows: obj });
+//    $(".render_data").html(html);
+//};
 
-function renderList(obj){ //handlebar
-    const template = $("#category_list").html();
-    const compiledTemplate = Handlebars.compile(template);
+
+function renderTable(obj) { //datatable
     debugger;
-    const html = compiledTemplate({ rows: obj });
-    $(".render_data").html(html);
+    $('#tblData').DataTable({
+        data: obj,
+        columns: [
+            { data: 'id' },
+            { data: 'categoryName' },
+            {
+                data: 'id', render: function (data, type, row, meta) {
+                    return type === 'display' ?
+                        '<button type="button" onclick="Edit(' + data + ')" class="btn btn-warning">Edit</button>' +
+                        '<button type="button" onclick="Delete(' + data + ')" class="btn btn-danger" > Delete</button>' : data;
+                }
+            }
+            //{ defaultContent: '<button type="button" onclick="Edit("+data.id+")" class="btn btn-warning">Edit</button>' }
+
+        ]
+    });
 };
 
-function LoadList() {
+
+function LoadList() { // for datatable
     console.log("executed");
     $.ajax({
         url: '/Category/GetAll',
         type: 'GET',
         success: function (response) {
             debugger;
-            if (response.data && response.data.length > 0) {
-                renderList(response.data);
-            } else {
-                $(".render_data").html("Category List is empty!");
-            }
+            renderTable(response.data);
         },
         error: function (error) {
             alert("Internal server error!");
         }
     });
 }
+
+//function LoadList() {
+//    console.log("executed");
+//    $.ajax({
+//        url: '/Category/GetAll',
+//        type: 'GET',
+//        success: function (response) {
+//            debugger;
+//            if (response.data && response.data.length > 0) {
+//                renderList(response.data);
+//            } else {
+//                $(".render_data").html("Category List is empty!");
+//            }
+//        },
+//        error: function (error) {
+//            alert("Internal server error!");
+//        }
+//    });
+//}
 
 
 function Edit(id) {

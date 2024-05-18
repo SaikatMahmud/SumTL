@@ -9,7 +9,7 @@ using System.Text.Json;
 
 namespace SumTL.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    //[Authorize(Roles = "Admin")]
     public class CategoryController : Controller
     {
         private CategoryService categoryService;

@@ -7,15 +7,17 @@ using SumTL.BLL.Services;
 
 namespace SumTL.Controllers
 {
-    [Authorize(Roles = "General, Admin")]
+   // [Authorize(Roles = "General, Admin")]
     public class ItemController : Controller
     {
         private CategoryService categoryService;
         private ItemService itemService;
-        public ItemController(IBusinessService serviceAccess)
+        private readonly IWebHostEnvironment webHostEnvironment;
+        public ItemController(IBusinessService serviceAccess, IWebHostEnvironment _webHostEnvironment)
         {
             categoryService = serviceAccess.CategoryService;
             itemService = serviceAccess.ItemService;
+            webHostEnvironment = _webHostEnvironment;
         }
         #region Razor views
         //public IActionResult GetAll()
@@ -108,7 +110,7 @@ namespace SumTL.Controllers
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            var data = itemService.Get(i => i.Id == id);
+            var data = itemService.Get(i => i.Id == id, "Images");
             if (data == null) return NotFound();
             IEnumerable<SelectListItem> catList = categoryService.Get().Select(c => new SelectListItem
             {
@@ -155,6 +157,36 @@ namespace SumTL.Controllers
                 return Json(new { msg = "One or more field validation error!" });
             }
             var result = itemService.Create(it);
+            return Ok();
+        }
+        [HttpPost]
+        [Route("Item/ImageUpload/{id}")]
+        public IActionResult ImageUpload(int id, IFormFile file)
+        {
+            if (id == 0 || file == null) return Json(new { msg = "No file provided or invalid item!" });
+            var data = itemService.Get(i => i.Id == id);
+            if (data == null) return Json(new { msg = "Invalid item!" });
+            string wwwRootPath = webHostEnvironment.WebRootPath;
+            string imagePath = Path.Combine(wwwRootPath, @"uploads\images");
+            string imageName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+            using (var fileStream = new FileStream(Path.Combine(imagePath, imageName), FileMode.Create))
+            {
+                file.CopyTo(fileStream);
+            }
+            itemService.UploadImage(id, @"\uploads\images\" + imageName);
+            return Ok();
+        }
+
+
+        [HttpDelete]
+       // [Route("Item/ImageUpload/{id}")]
+        public IActionResult DeleteImage(int id)
+        {
+            var imageUrl = itemService.DeleteImage(id);
+            var imagePath = Path.Combine(webHostEnvironment.WebRootPath, imageUrl.TrimStart('\\')); // remove leading backslash
+            if (System.IO.File.Exists(imagePath)){
+                System.IO.File.Delete(imagePath);
+            }
             return Ok();
         }
 

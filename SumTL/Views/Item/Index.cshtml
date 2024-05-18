@@ -1,4 +1,4 @@
-﻿
+﻿<body onload="LoadList()">
 <div>
     <div class="row pt-4 pb-3">
         <div class="col-6">
@@ -9,21 +9,25 @@
         </div>
     </div>
 </div>
-<div class="render_data"></div>
 
+@* <div class="render_data"></div> *@
 
-
-<script type="text/x-handlebars-template" id="item_list">
-        <table class="table table-hover">
+<div>
+@* <script type="text/x-handlebars-template" id="item_list"> *@
+        <table id="tblData" class="table table-bordered">
+            <thead>
+        @* <table class="table table-hover"> *@
             <tr>
                 <th>Item Id</th>
                 <th>Item Name</th>
                 <th>Unit</th>
                 <th>Quantity</th>
                 <th>Category</th>
-                <th>Action</th>
+                <th></th>
             </tr>
-            {{#each rows}}
+            </thead>
+
+            @* {{#each rows}}
             <tr>
                 <td>{{id}}</td>
                 <td>{{id}}</td>
@@ -37,8 +41,9 @@
                       <button type="button" onclick="Delete({{id}})" class="btn btn-danger">Delete</button>
                    </td>
             </tr>
-            {{/each}}
+            {{/each}} *@
         </table>
-</script>
-
+@* </script> *@
+</div>
+</body>
 <script src="~/js/Item.js"></script>

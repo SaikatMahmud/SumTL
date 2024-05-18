@@ -12,6 +12,7 @@ namespace SumTL.DAL.UnitOfWork
     {
         ICategory Category { get; }
         IItem Item { get; }
+        IImage Image { get; }
         IAppUser<AppUser> AppUser { get; }
     }
 }

@@ -17,6 +17,7 @@ namespace SumTL.DAL.UnitOfWork
         private readonly SignInManager<AppUser> _signInManager;
         public ICategory Category { get; private set; }
         public IItem Item { get; private set; }
+        public IImage Image { get; private set; }
         public IAppUser<AppUser> AppUser { get; set; }
         public UnitOfWork(ApplicationDbContext db, UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
         {
@@ -26,6 +27,7 @@ namespace SumTL.DAL.UnitOfWork
 
             Category = new CategoryRepo(_db);
             Item = new ItemRepo(_db);
+            Image = new ImageRepo(_db);
             AppUser = new AppUserRepo(_db,_userManager,_signInManager);
         }
 
