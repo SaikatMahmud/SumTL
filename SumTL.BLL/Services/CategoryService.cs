@@ -50,6 +50,48 @@ namespace SumTL.BLL.Services
             }
             return null;
         }
+
+        public List<CategoryDTO> GetCustomized(int skip, int take, out int totalCount, out int filteredCount, string? properties = null)
+        {
+            totalCount = 0;
+            filteredCount = 0;
+            var data = DataAccess.Category.GetCustomizedListData(skip, take, properties);
+            if (data.Item1 != null)
+            {
+                var cfg = new MapperConfiguration(c =>
+                {
+                    c.CreateMap<Category, CategoryDTO>();
+                });
+                var mapper = new Mapper(cfg);
+                totalCount = data.Item2;
+                filteredCount = data.Item3;
+                return mapper.Map<List<CategoryDTO>>(data.Item1);
+
+            }
+            return null;
+        }
+
+        public List<CategoryDTO> GetCustomized(Expression<Func<CategoryDTO, bool>> filter, int skip, int take, out int totalCount, out int filteredCount, string? properties = null)
+        {
+            var cfg = new MapperConfiguration(c =>
+            {
+                c.CreateMap<Category, CategoryDTO>();
+            });
+            var mapper = new Mapper(cfg);
+            var categoryFilter = mapper.MapExpression<Expression<Func<Category, bool>>>(filter);
+            totalCount = 0;
+            filteredCount = 0;
+            var data = DataAccess.Category.GetCustomizedListData(categoryFilter, skip, take, properties);
+            if (data.Item1 != null)
+            {
+                totalCount = data.Item2;
+                filteredCount = data.Item3;
+                return mapper.Map<List<CategoryDTO>>(data.Item1);
+
+            }
+            return null;
+        }
+
         public CategoryDTO Get(Expression<Func<CategoryDTO, bool>> filter, string? properties = null)
         {
             var cfg = new MapperConfiguration(c =>
@@ -90,6 +132,17 @@ namespace SumTL.BLL.Services
         {
             var data = DataAccess.Category.Get(c => c.Id == Id);
             return DataAccess.Category.Delete(data);
+        }
+
+        public async Task<bool> UploadFromExcel(Stream stream)
+        {
+            var data = DataUploadService.ParseCategoryData(stream);
+            if (data != null)
+            {
+                var result = await DataAccess.Category.UploadBulk(data);
+                if (result.success) return true;
+            }
+            return false;
         }
     }
 

@@ -7,7 +7,7 @@ using SumTL.BLL.Services;
 
 namespace SumTL.Controllers
 {
-   // [Authorize(Roles = "General, Admin")]
+     [Authorize(Roles = "General, Admin")]
     public class ItemController : Controller
     {
         private CategoryService categoryService;
@@ -179,15 +179,49 @@ namespace SumTL.Controllers
 
 
         [HttpDelete]
-       // [Route("Item/ImageUpload/{id}")]
+        // [Route("Item/ImageUpload/{id}")]
         public IActionResult DeleteImage(int id)
         {
             var imageUrl = itemService.DeleteImage(id);
             var imagePath = Path.Combine(webHostEnvironment.WebRootPath, imageUrl.TrimStart('\\')); // remove leading backslash
-            if (System.IO.File.Exists(imagePath)){
+            if (System.IO.File.Exists(imagePath))
+            {
                 System.IO.File.Delete(imagePath);
             }
             return Ok();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UploadItemBulk(IFormFile file)
+        {
+            if (file == null) return Json(new { msg = "No file provided!" });
+            var result = await itemService.UploadFromExcel(file.OpenReadStream());
+            if (result) return Ok();
+            return Json(new { msg = "Error! Could not upload items!" });
+        }
+
+        [HttpGet]
+        public IActionResult GetAllCustomized(int draw, int start, int length, string search)
+        {
+            int totalCount = 0;
+            int filteredCount = 0;
+            List<ItemDTO> result;
+            if (string.IsNullOrEmpty(search))
+            {
+                result = itemService.GetCustomized(start, length, out totalCount, out filteredCount, "Category");
+            }
+            else
+            {
+                result = itemService.GetCustomized(c => c.ItemName.Contains(search), start, length, out totalCount, out filteredCount, "Category");
+            }
+            var response = new
+            {
+                draw = draw,
+                recordsTotal = totalCount,
+                recordsFiltered = filteredCount,
+                data = result
+            };
+            return Json(response);
         }
 
         #endregion

@@ -8,11 +8,55 @@
 //};
 
 
-function renderTable(obj) { //datatable
-    debugger;
+//function renderTable(obj) { //datatable
+//    debugger;
+//    $('#tblData').DataTable({
+//        data: obj,
+//        columns: [
+//            { data: 'id' },
+//            { data: 'categoryName' },
+//            {
+//                data: 'id', render: function (data, type, row, meta) {
+//                    return type === 'display' ?
+//                        '<button type="button" onclick="Edit(' + data + ')" class="btn btn-warning">Edit</button>' +
+//                        '<button type="button" onclick="Delete(' + data + ')" class="btn btn-danger" > Delete</button>' : data;
+//                }
+//            }
+//            //{ defaultContent: '<button type="button" onclick="Edit("+data.id+")" class="btn btn-warning">Edit</button>' }
+
+//        ]
+//    });
+//};
+
+
+//function LoadList() { // for datatable
+//    console.log("executed");
+//    $.ajax({
+//        url: '/Category/GetAll',
+//        type: 'GET',
+//        success: function (response) {
+//            debugger;
+//            renderTable(response.data);
+//        },
+//        error: function (error) {
+//            alert("Internal server error!");
+//        }
+//    });
+//}
+
+
+function LoadList() {
     $('#tblData').DataTable({
-        data: obj,
-        columns: [
+        "processing": true,
+        "serverSide": true,
+        "ajax": {
+            "url": "/Category/GetAllCustomized",
+            "type": "GET",
+            "data": function (d) {
+                d.search = d.search.value;
+            }
+        },
+        "columns": [
             { data: 'id' },
             { data: 'categoryName' },
             {
@@ -21,25 +65,10 @@ function renderTable(obj) { //datatable
                         '<button type="button" onclick="Edit(' + data + ')" class="btn btn-warning">Edit</button>' +
                         '<button type="button" onclick="Delete(' + data + ')" class="btn btn-danger" > Delete</button>' : data;
                 }
-            }
-            //{ defaultContent: '<button type="button" onclick="Edit("+data.id+")" class="btn btn-warning">Edit</button>' }
-
-        ]
-    });
-};
-
-
-function LoadList() { // for datatable
-    console.log("executed");
-    $.ajax({
-        url: '/Category/GetAll',
-        type: 'GET',
-        success: function (response) {
-            debugger;
-            renderTable(response.data);
-        },
-        error: function (error) {
-            alert("Internal server error!");
+            },
+        ],
+        "language": {
+            "searchPlaceholder": "Search with name"
         }
     });
 }

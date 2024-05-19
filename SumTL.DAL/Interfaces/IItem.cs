@@ -10,5 +10,6 @@ namespace SumTL.DAL.Interfaces
     public interface IItem : IRepo<Item>
     {
         //any extra functionality here if needed
+        Task<(bool success, string? error)> UploadBulk(List<Item> items);
     }
 }

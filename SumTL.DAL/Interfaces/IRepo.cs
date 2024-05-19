@@ -14,5 +14,8 @@ namespace SumTL.DAL.Interfaces
         bool Create(T obj);
         bool Update(T obj);
         bool Delete(T obj);
+        (IEnumerable<T>, int TotalCount, int FilteredCount) GetCustomizedListData(Expression<Func<T, bool>> filter, int skip, int take, string? includeProperties = null);
+        (IEnumerable<T>, int TotalCount, int FilteredCount) GetCustomizedListData(int skip, int take, string? includeProperties = null);
+
     }
 }

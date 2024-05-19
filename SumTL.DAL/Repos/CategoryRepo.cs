@@ -17,5 +17,13 @@ namespace SumTL.DAL.Repos
         {
             _db = db;
         }
+
+        public async Task<(bool success, string? error)> UploadBulk(List<Category> categories)
+        {
+            await _db.Categories.AddRangeAsync(categories);
+            await _db.SaveChangesAsync();
+            return (true, null);
+        }
+        
     }
 }

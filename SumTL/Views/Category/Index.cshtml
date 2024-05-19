@@ -1,4 +1,4 @@
-﻿@* 
+﻿@*
 <div>
     <div class="row pt-4 pb-3">
         <div class="col-6">
@@ -48,6 +48,11 @@
                 <a asp-controller="Category" asp-action="Create" class="btn btn-success"><i class="bi bi-plus-circle"></i> Add New</a>
             </div>
         </div>
+        <form id="CategoryExcelUpload" enctype="multipart/form-data">
+            <label>Import Catagories (Bulk)</label>
+            <input type="file" id="inputFile" class="form-control" />
+            <input type="button" value="Upload" onclick="UploadCategories()" class="btn btn-success"></input>
+        </form>
     </div>
     <div>
         <table id="tblData" class="table table-bordered">
@@ -63,3 +68,4 @@
     </div>
 </body>
 <script src="~/js/Category.js"></script>
+<script src="~/js/FilesHandle.js"></script>

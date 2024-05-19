@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SumTL.DAL.Interfaces;
+using SumTL.DAL.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -64,5 +65,38 @@ namespace SumTL.DAL.Repos
             dbSet.Update(obj);
             return _db.SaveChanges() > 0;
         }
+
+        public (IEnumerable<T>, int TotalCount, int FilteredCount) GetCustomizedListData(Expression<Func<T, bool>> filter, int skip, int take, string? includeProperties = null)
+        {
+            IQueryable<T> query = dbSet;
+            int totalCount = dbSet.Count();
+            query = query.Where(filter);
+            if (!string.IsNullOrEmpty(includeProperties))
+            {
+                foreach (var includeProp in includeProperties.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries))
+                {
+                    query = query.Include(includeProp);
+                }
+            }
+            int filterCount = query.Count();  
+            query = query.Skip(skip).Take(take);
+            return (query.ToList(), totalCount, filterCount);
+        } 
+        public (IEnumerable<T>, int TotalCount, int FilteredCount) GetCustomizedListData(int skip, int take, string? includeProperties = null)
+        {
+            IQueryable<T> query = dbSet;
+            int totalCount = dbSet.Count();
+            if (!string.IsNullOrEmpty(includeProperties))
+            {
+                foreach (var includeProp in includeProperties.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries))
+                {
+                    query = query.Include(includeProp);
+                }
+            }
+            int filteredCount = query.Count();
+            query = query.Skip(skip).Take(take);
+            return (query.ToList(), totalCount, filteredCount);
+        }
+
     }
 }

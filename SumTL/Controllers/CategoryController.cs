@@ -9,7 +9,7 @@ using System.Text.Json;
 
 namespace SumTL.Controllers
 {
-    //[Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
     public class CategoryController : Controller
     {
         private CategoryService categoryService;
@@ -141,6 +141,39 @@ namespace SumTL.Controllers
             }
             var result = categoryService.Create(ct);
             return Ok();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UploadCategoryBulk(IFormFile file)
+        {
+            if (file == null) return Json(new { msg = "No file provided!" });
+            var result = await categoryService.UploadFromExcel(file.OpenReadStream());
+            if (result) return Ok();
+            return Json(new { msg = "Error! Could not upload items!" });
+        }
+
+        [HttpGet]
+        public IActionResult GetAllCustomized(int draw, int start, int length, string search)
+        {
+            int totalCount = 0;
+            int filteredCount = 0;
+            List<CategoryDTO> result;
+            if (string.IsNullOrEmpty(search))
+            {
+                result = categoryService.GetCustomized(start, length, out totalCount, out filteredCount);
+            }
+            else
+            {
+                result = categoryService.GetCustomized(c => c.CategoryName.Contains(search), start, length, out totalCount, out filteredCount);
+            }
+            var response = new
+            {
+                draw = draw,
+                recordsTotal = totalCount,
+                recordsFiltered = filteredCount,
+                data = result
+            };
+            return Json(response);
         }
 
         #endregion

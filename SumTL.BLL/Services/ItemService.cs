@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using AutoMapper.Extensions.ExpressionMapping;
+using Microsoft.AspNetCore.Mvc;
 using SumTL.BLL.DTOs;
 using SumTL.DAL.Models;
 using SumTL.DAL.UnitOfWork;
@@ -91,6 +92,50 @@ namespace SumTL.BLL.Services
             }
             return null;
         }
+
+        public List<ItemDTO> GetCustomized(int skip, int take, out int totalCount, out int filteredCount, string? properties = null)
+        {
+            totalCount = 0;
+            filteredCount = 0;
+            var data = DataAccess.Item.GetCustomizedListData(skip, take, properties);
+            if (data.Item1 != null)
+            {
+                var cfg = new MapperConfiguration(c =>
+                {
+                    c.CreateMap<Item, ItemDTO>();
+                    c.CreateMap<Category, CategoryDTO>();
+                });
+                var mapper = new Mapper(cfg);
+                totalCount = data.Item2;
+                filteredCount = data.Item3;
+                return mapper.Map<List<ItemDTO>>(data.Item1);
+
+            }
+            return null;
+        }
+
+        public List<ItemDTO> GetCustomized(Expression<Func<ItemDTO, bool>> filter, int skip, int take, out int totalCount, out int filteredCount, string? properties = null)
+        {
+            var cfg = new MapperConfiguration(c =>
+            {
+                c.CreateMap<Item, ItemDTO>();
+                c.CreateMap<Category, CategoryDTO>();
+            });
+            var mapper = new Mapper(cfg);
+            var itemFilter = mapper.MapExpression<Expression<Func<Item, bool>>>(filter);
+            totalCount = 0;
+            filteredCount = 0;
+            var data = DataAccess.Item.GetCustomizedListData(itemFilter, skip, take, properties);
+            if (data.Item1 != null)
+            {
+                totalCount = data.Item2;
+                filteredCount = data.Item3;
+                return mapper.Map<List<ItemDTO>>(data.Item1);
+
+            }
+            return null;
+        }
+
         public bool Create(ItemDTO obj)
         {
             var cfg = new MapperConfiguration(c =>
@@ -134,6 +179,15 @@ namespace SumTL.BLL.Services
             DataAccess.Image.Delete(data);
             return data.ImageUrl;
         }
-
+        public async Task<bool> UploadFromExcel(Stream stream)
+        {
+            var data = DataUploadService.ParseItemData(stream);
+            if (data != null)
+            {
+               var result = await DataAccess.Item.UploadBulk(data);
+                if(result.success) return true;
+            }
+            return false;
+        }
     }
 }

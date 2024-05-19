@@ -8,6 +8,11 @@
             <a asp-controller="Item" asp-action="Create" class="btn btn-success"><i class="bi bi-plus-circle"></i> Add New</a>
         </div>
     </div>
+        <form id="ItemExcelUpload" enctype="multipart/form-data">
+            <label>Import Items (Bulk)</label>
+            <input type="file" id="inputFile" class="form-control" />
+            <input type="button" value="Upload" onclick="UploadItems()" class="btn btn-success"></input>
+        </form>
 </div>
 
 @* <div class="render_data"></div> *@
@@ -47,3 +52,4 @@
 </div>
 </body>
 <script src="~/js/Item.js"></script>
+<script src="~/js/FilesHandle.js"></script>
