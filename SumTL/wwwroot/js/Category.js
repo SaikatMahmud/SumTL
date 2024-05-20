@@ -98,7 +98,7 @@ function Edit(id) {
     window.location.href = "/Category/Edit/" + id;
 }
 
-function SaveFormData() {
+function SaveCategory() {
     console.log("form data called");
     var formData = new FormData(document.getElementById("CategoryForm"));
     formData.append("Id", $("#Id").val())
@@ -141,7 +141,7 @@ function SaveFormData() {
     DoValidation();
 }
 
-function AddFormData() {
+function AddCategory() {
     console.log("form data called");
     var formData = new FormData(document.getElementById("CategoryForm"));
     console.log(...formData);

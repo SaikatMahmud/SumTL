@@ -1,5 +1,5 @@
 ﻿
-function AddFormData() {
+function AddUser() {
     console.log("form data called");
     var formData = new FormData(document.getElementById("RegForm"));
     console.log(...formData);

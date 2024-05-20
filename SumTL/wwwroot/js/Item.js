@@ -106,7 +106,7 @@ function Edit(id) {
     window.location.href = "/Item/Edit/" + id;
 }
 
-function SaveFormData() {
+function SaveItem() {
     console.log("form data called");
     var formData = new FormData(document.getElementById("ItemForm"));
     formData.append("Id", $("#Id").val())
@@ -152,7 +152,7 @@ function SaveFormData() {
     DoValidation();
 }
 
-function AddFormData() {
+function AddItem() {
     console.log("form data called");
     var formData = new FormData(document.getElementById("ItemForm"));
     console.log(...formData);
